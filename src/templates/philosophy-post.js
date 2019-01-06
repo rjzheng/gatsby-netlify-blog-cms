@@ -1,20 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { kebabCase } from 'lodash'
-import Helmet from 'react-helmet'
-import { graphql, Link } from 'gatsby'
-import Layout from '../components/Layout'
-import Content, { HTMLContent } from '../components/Content'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { kebabCase } from 'lodash';
+import Helmet from 'react-helmet';
+import { graphql, Link } from 'gatsby';
+import Layout from '../components/Layout';
+import Content, { HTMLContent } from '../components/Content';
 
-export const BlogPostTemplate = ({
-  content,
-  contentComponent,
-  description,
-  tags,
-  title,
-  helmet,
-}) => {
-  const PostContent = contentComponent || Content
+export const PhilosophyPostTemplate = ({ content, contentComponent, description, tags, title, helmet }) => {
+  const PostContent = contentComponent || Content;
 
   return (
     <section className="section">
@@ -22,9 +15,7 @@ export const BlogPostTemplate = ({
       <div className="container content">
         <div className="columns">
           <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-              {title}
-            </h1>
+            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">{title}</h1>
             <p>{description}</p>
             <PostContent content={content} />
             {tags && tags.length ? (
@@ -43,44 +34,44 @@ export const BlogPostTemplate = ({
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-BlogPostTemplate.propTypes = {
+PhilosophyPostTemplate.propTypes = {
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
   description: PropTypes.string,
   title: PropTypes.string,
-  helmet: PropTypes.instanceOf(Helmet),
-}
+  helmet: PropTypes.instanceOf(Helmet)
+};
 
-const BlogPost = ({ data }) => {
-  const { markdownRemark: post } = data
+const PhilosophyPost = ({ data }) => {
+  const { markdownRemark: post } = data;
 
   return (
     <Layout>
-      <BlogPostTemplate
+      <PhilosophyPostTemplate
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
-        helmet={<Helmet title={`${post.frontmatter.title} | Blog`} />}
+        helmet={<Helmet title={`${post.frontmatter.title} | Philosophy`} />}
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
       />
     </Layout>
-  )
-}
+  );
+};
 
-BlogPost.propTypes = {
+PhilosophyPost.propTypes = {
   data: PropTypes.shape({
-    markdownRemark: PropTypes.object,
-  }),
-}
+    markdownRemark: PropTypes.object
+  })
+};
 
-export default BlogPost
+export default PhilosophyPost;
 
 export const pageQuery = graphql`
-  query BlogPostByID($id: String!) {
+  query PhilosophyPostByID($id: String!) {
     markdownRemark(id: { eq: $id }) {
       id
       html
@@ -92,4 +83,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
