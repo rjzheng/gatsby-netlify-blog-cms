@@ -1,5 +1,5 @@
 ---
-templateKey: blog-post
+templateKey: tech-post
 title: How to add Comodo PositiveSSL Certificate to a Node/Express server
 date: 2018-10-28T23:06:57.465Z
 description: >-
